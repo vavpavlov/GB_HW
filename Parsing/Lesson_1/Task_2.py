@@ -8,7 +8,7 @@ key = 'AIzaSyCKN-gIIELoSc3b98yoiG2UjiHGSiCX32I'
 channelId = 'UCMCgOm8GZkHp8zJ6l7_hIuA'
 main_link = 'https://www.googleapis.com/youtube/v3/search?&maxResults=1&part=snippet,id&order=date&maxResults=1'
 
-headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'}
+headers = {'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36'}
 
 params = {'key': key,
           'channelId': channelId}

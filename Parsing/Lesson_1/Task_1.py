@@ -7,7 +7,7 @@ from pprint import pprint
 user = input('Введите имя пользователя: ')
 
 main_link = f'https://api.github.com/users/{user}/repos'
-headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'}
+headers = {'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36'}
 
 response = requests.get(main_link, headers)
 data = json.loads(response.text)
