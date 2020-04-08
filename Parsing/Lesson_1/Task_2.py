@@ -1,3 +1,5 @@
+#Изучить список открытых API. Найти среди них любое, требующее авторизацию (любого типа). Выполнить запросы к нему, пройдя авторизацию. Ответ сервера записать в файл.
+
 import requests
 import json
 from pprint import pprint
@@ -16,6 +18,10 @@ data = json.loads(response.text)
 add_data = data["items"][0]["snippet"]["publishedAt"]
 
 print(f'Последнее видео на канале "{data["items"][0]["snippet"]["channelTitle"]}" - "{data["items"][0]["snippet"]["title"]}", добавлено {add_data[0:10]}')
+
+with open('server_answer.json', 'w') as outfile:
+    json.dump(data, outfile)
+
 
 #pprint(data)
 #print(type(data["items"]))

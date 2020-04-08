@@ -1,3 +1,5 @@
+#Посмотреть документацию к API GitHub, разобраться как вывести список репозиториев для конкретного пользователя, сохранить JSON-вывод в файле *.json.
+
 import requests
 import json
 from pprint import pprint
@@ -13,6 +15,17 @@ data = json.loads(response.text)
 #pprint(data)
 
 if response.ok:
-    for resp in data:
-        print(resp['name'], resp['html_url'])
+    data_final = []
+    data_final.append(user)
+
+    print(f'Публичные репозитории пользователя {user} на GitHub:')
+
+    for repos in data:
+        print(repos['name'])
+        data_final.append(repos['name'])
+
+    with open(f'{user}_gh_pr.json', 'w') as outfile:
+        json.dump(data_final, outfile)
+
 else: print('Такого пользователя нет на GitHub')
+
