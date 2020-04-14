@@ -38,7 +38,7 @@ def hh_parsing(page, max_pages, hh_link, text, headers):
 
                     if re.findall('^(\s\d+\s\d+)', vacancy_salary.getText()):
                         vacancy_salary_data['exact'] = re.findall('^(\s\d+\s\d+)', vacancy_salary.getText())[0]
-                        vacancy_salary_data['exact'] = (vacancy_salary_data['exact']).replace(u'\xa0', u'')
+                        vacancy_salary_data['exact'] = int((vacancy_salary_data['exact']).replace(u'\xa0', u''))
                     else:
                         vacancy_salary_data['exact'] = None
 
@@ -46,7 +46,7 @@ def hh_parsing(page, max_pages, hh_link, text, headers):
                         vacancy_salary_data['min'] = re.findall('от\s(\d+\s\d+)|(\d+\s\d+)-', vacancy_salary.getText())[
                             0]
                         vacancy_salary_data['min'] = list(filter(None, vacancy_salary_data['min']))[0]
-                        vacancy_salary_data['min'] = (vacancy_salary_data['min']).replace(u'\xa0', u'')
+                        vacancy_salary_data['min'] = int((vacancy_salary_data['min']).replace(u'\xa0', u''))
                     else:
                         vacancy_salary_data['min'] = None
 
@@ -54,7 +54,7 @@ def hh_parsing(page, max_pages, hh_link, text, headers):
                         vacancy_salary_data['max'] = \
                         re.findall('до\s(\d+\s\d+)|.-(\d+\s\d+)', vacancy_salary.getText())[0]
                         vacancy_salary_data['max'] = list(filter(None, vacancy_salary_data['max']))[0]
-                        vacancy_salary_data['max'] = (vacancy_salary_data['max']).replace(u'\xa0', u'')
+                        vacancy_salary_data['max'] = int((vacancy_salary_data['max']).replace(u'\xa0', u''))
                     else:
                         vacancy_salary_data['max'] = None
 
@@ -104,21 +104,21 @@ def sj_parsing(page, max_pages, sj_link, text, headers):
                     vacancy_salary_data = {}
                     if re.findall('^(\s\d+\s\d+)', vacancy_salary):
                         vacancy_salary_data['exact'] = re.findall('^(\s\d+\s\d+)', vacancy_salary)[0]
-                        vacancy_salary_data['exact'] = (vacancy_salary_data['exact']).replace(u'\xa0', u'')
+                        vacancy_salary_data['exact'] = int((vacancy_salary_data['exact']).replace(u'\xa0', u''))
                     else:
                         vacancy_salary_data['exact'] = None
 
                     if re.findall('от\s(\d+\s\d+)|(\d+\s\d+)', vacancy_salary):
                         vacancy_salary_data['min'] = re.findall('от\s(\d+\s\d+)|(\d+\s\d+)', vacancy_salary)[0]
                         vacancy_salary_data['min'] = list(filter(None, vacancy_salary_data['min']))[0]
-                        vacancy_salary_data['min'] = (vacancy_salary_data['min']).replace(u'\xa0', u'')
+                        vacancy_salary_data['min'] = int((vacancy_salary_data['min']).replace(u'\xa0', u''))
                     else:
                         vacancy_salary_data['min'] = None
 
                     if re.findall('до\s(\d+\s\d+)|.-(\d+\s\d+)', vacancy_salary):
                         vacancy_salary_data['max'] = re.findall('до\s(\d+\s\d+)|(\d+\s\d+)', vacancy_salary)[0]
                         vacancy_salary_data['max'] = list(filter(None, vacancy_salary_data['max']))[0]
-                        vacancy_salary_data['max'] = (vacancy_salary_data['max']).replace(u'\xa0', u'')
+                        vacancy_salary_data['max'] = int((vacancy_salary_data['max']).replace(u'\xa0', u''))
                     else:
                         vacancy_salary_data['max'] = None
 
