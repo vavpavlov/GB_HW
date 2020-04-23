@@ -18,14 +18,14 @@ class JobparserPipeline(object):
 
         if item['source'] == 'hh.ru':
             if 'от ' in item['salary_cont'] and ' до ' in item['salary_cont']:
-                item['salary']['min'] = item['salary_cont'][1]
-                item['salary']['max'] = item['salary_cont'][3]
+                item['salary']['min'] = item['salary_cont'][1].replace(u'\xa0', u' ')
+                item['salary']['max'] = item['salary_cont'][3].replace(u'\xa0', u' ')
                 item['salary']['currency'] = item['salary_cont'][5]
             elif 'от ' in item['salary_cont'] and ' до ' not in item['salary_cont']:
-                item['salary']['min'] = item['salary_cont'][1]
+                item['salary']['min'] = item['salary_cont'][1].replace(u'\xa0', u' ')
                 item['salary']['currency'] = item['salary_cont'][3]
             elif 'от ' not in item['salary_cont'] and 'до ' in item['salary_cont']:
-                item['salary']['max'] = item['salary_cont'][1]
+                item['salary']['max'] = item['salary_cont'][1].replace(u'\xa0', u' ')
                 item['salary']['currency'] = item['salary_cont'][3]
 
         elif item['source'] == 'superjob.ru':
