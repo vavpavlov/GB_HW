@@ -1,14 +1,16 @@
-def prefilter_items(data):
-    # Уберем самые популярные товары (их и так купят)
-    popularity = data_train.groupby('item_id')['user_id'].nunique().reset_index() / data_train['user_id'].nunique()
-    popularity.rename(columns={'user_id': 'share_unique_users'}, inplace=True)
+def prefilter_items(data_train):
+    # Оставим только 5000 самых популярных товаров
+    popularity = data_train.groupby('item_id')['quantity'].sum().reset_index()
+    popularity.rename(columns={'quantity': 'n_sold'}, inplace=True)
+    top_5000 = popularity.sort_values('n_sold', ascending=False).head(5000).item_id.tolist()
+    #добавим, чтобы не потерять юзеров
+    data_train.loc[~data_train['item_id'].isin(top_5000), 'item_id'] = 999999 
     
-    top_popular = popularity[popularity['share_unique_users'] > 0.5].item_id.tolist()
-    data = data[~data['item_id'].isin(top_popular)]
     
-    # Уберем самые НЕ популярные товары (их и так НЕ купят)
-    top_notpopular = popularity[popularity['share_unique_users'] < 0.01].item_id.tolist()
-    data = data[~data['item_id'].isin(top_notpopular)]
+    
+    # Уберем самые популярные 
+    
+    # Уберем самые непопулряные 
     
     # Уберем товары, которые не продавались за последние 12 месяцев
     
@@ -19,6 +21,8 @@ def prefilter_items(data):
     # Уберем слишком дорогие товарыs
     
     # ...
+    
+    return data_train
     
 
 def postfilter_items(data):
